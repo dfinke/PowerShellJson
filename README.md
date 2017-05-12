@@ -44,7 +44,7 @@ Query JSON with PowerShell
         "isbn": "0-553-21311-3",
         "price": 8.99
       }, {
-         "category": "fiction",
+        "category": "fiction",
         "author": "J. R. R. Tolkien",
         "title": "The Lord of the Rings",
         "isbn": "0-395-19395-8",
