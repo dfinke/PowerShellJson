@@ -59,6 +59,37 @@ Query JSON with PowerShell
   }
 }
 ```
+### Cast to a Class in PowerShell
+You can create Claseses in PowerShell and you can cast JSON to them like this.
+
+```powershell
+class book {
+    $category
+    $author
+    $title
+    $isbn
+    $price
+}
+
+class bicycle {
+    $color
+    $price
+}
+
+class store {
+    [book[]]$book
+    [bicycle]$bicycle
+}
+
+class root {
+    [store]$store
+}
+
+[root](.\PSJson.ps1)
+```
+
+### Queries
+
 | PowerShell | Description |
 | --- | --- |
 | `$data.store.book.author` | The authors of all books in the store |
