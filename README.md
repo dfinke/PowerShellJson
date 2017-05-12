@@ -131,7 +131,7 @@ price    : 22.99
 
 | PowerShell | Description |
 | --- | --- |
-| `$data.store.book[0..1] ` | The first two books |
+| `$data.store.book[0..1]` | The first two books |
 
 ```
 category  author       title                  price

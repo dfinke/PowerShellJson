@@ -1,4 +1,4 @@
-$json = @"
+@"
 {
   "store": {
     "book": [ 
@@ -32,12 +32,10 @@ $json = @"
     }
   }
 }
-"@ 
+"@ | ConvertFrom-Json
 
-cls
-
-$data = $json | ConvertFrom-Json
-
+#cls
+#$data = $json | ConvertFrom-Json
 # $data.store.book.author | clip
 # $data.store | Format-List | clip
 #$data.store.psobject.Properties.name | ForEach-Object {$data.store.$_.price} | clip
