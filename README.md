@@ -87,6 +87,7 @@ class root {
 
 [root](.\PSJson.ps1)
 ```
+This approach enables you to validate that the incoming data has correct objects and fields associated with it.
 
 ### Queries
 
