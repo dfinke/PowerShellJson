@@ -82,7 +82,7 @@ bicycle : @{color=red; price=19.95}
 
 | PowerShell | Description |
 | --- | --- |
-| `$data.store.psobject.Properties.name | ForEach-Object {$data.store.$_.price} ` | The price of everything in the store |
+| `$data.store.psobject.Properties.name \| ForEach-Object {$data.store.$_.price} ` | The price of everything in the store |
 
 ```
 8.95
@@ -141,7 +141,7 @@ fiction   Evelyn Waugh Sword of Honour        12.99
 
 | PowerShell | Description |
 | --- | --- |
-| `$data.store.book | ? isbn` | Filter all books with isbn number |
+| `$data.store.book \| ? isbn` | Filter all books with isbn number |
 
 ```
 category author           title                 isbn          price
@@ -152,7 +152,7 @@ fiction  J. R. R. Tolkien The Lord of the Rings 0-395-19395-8 22.99
 
 | PowerShell | Description |
 | --- | --- |
-| `$data.store.book | ? price -lt 10` | Filter all books cheaper than 10 |
+| `$data.store.book \| ? price -lt 10` | Filter all books cheaper than 10 |
 
 ```
 category  author          title                  price
@@ -163,7 +163,7 @@ fiction   Herman Melville Moby Dick               8.99
 
 | PowerShell | Description |
 | --- | --- |
-| `$data.store.book | ? price -eq 8.95` | Filter all books that cost 8.95 |
+| `$data.store.book \| ? price -eq 8.95` | Filter all books that cost 8.95 |
 
 ```
 category  author     title                  price
@@ -173,7 +173,7 @@ reference Nigel Rees Sayings of the Century  8.95
 
 | PowerShell | Description |
 | --- | --- |
-| `$data.store.book | ? {$_.price -lt 30 -and $_.category -eq 'fiction'}` | Filter all fiction books cheaper than 30 |
+| `$data.store.book \| ? {$_.price -lt 30 -and $_.category -eq 'fiction'}` | Filter all fiction books cheaper than 30 |
 
 ```
 category author           title                 price
