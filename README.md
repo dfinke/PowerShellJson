@@ -1,3 +1,4 @@
+Inspired and ported from here https://github.com/dchester/jsonpath
 
 # Query Example
 
