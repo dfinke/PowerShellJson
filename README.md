@@ -71,7 +71,7 @@ J. R. R. Tolkien
 
 | PowerShell | Description |
 | --- | --- |
-| `$data.store | Format-List` | All the things in the store |
+| `$data.store \| Format-List` | All the things in the store |
 
 ```
 book    : {@{category=reference; author=Nigel Rees; title=Sayings of the Century; price=8.95}, @{category=fiction; author=Evelyn Waugh; title=Sword of Honour; 
