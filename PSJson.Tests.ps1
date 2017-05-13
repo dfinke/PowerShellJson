@@ -100,18 +100,23 @@ Describe "this" {
         $actual[1].price    | Should Be 22.99
     }
 
-    It "Filter all books cheaper than 10" {
+    It "Should Filter all books cheaper than 10" {
         $actual = $data.store.book | ? price -lt 10
         $actual.count | Should Be 2
     }
 
-    It "Filter all books that cost 8.95" {
+    It "Should Filter all books that cost 8.95" {
         $actual = @($data.store.book | ? price -eq 8.95)
         $actual.count | Should Be 1
     }
 
-    It "Filter all fiction books cheaper than 30" {
+    It "Should Filter all fiction books cheaper than 30" {
         $actual = $data.store.book | ? {$_.price -lt 30 -and $_.category -eq 'fiction'}
         $actual.count | Should Be 3
+    }
+
+    It "Should Sum all book prices" {
+        $actual = $data.store.book | Measure-Object Price -Sum
+        $actual.sum | Should be 53.92
     }
 }

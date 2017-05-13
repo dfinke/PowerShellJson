@@ -212,6 +212,19 @@ reference Nigel Rees Sayings of the Century  8.95
 
 | PowerShell | Description |
 | --- | --- |
+| `$data.store.book \| Measure-Object price -Sum` | Sum all book prices |
+
+```
+Count    : 4
+Average  :
+Sum      : 53.92
+Maximum  :
+Minimum  :
+Property : price
+```
+
+| PowerShell | Description |
+| --- | --- |
 | `$data.store.book \| ? {$_.price -lt 30 -and $_.category -eq 'fiction'}` | Filter all fiction books cheaper than 30 |
 
 ```
