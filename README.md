@@ -1,5 +1,11 @@
 Inspired and ported from here https://github.com/dchester/jsonpath
 
+Comes with:
+
+* [Pester](https://github.com/pester/Pester) tests
+* PowerShell classes for casting the JSON
+
+
 # Query Example
 
 ```powershell
