@@ -66,7 +66,7 @@ Query JSON with PowerShell
 }
 ```
 ### Cast to a Class in PowerShell
-You can create Claseses in PowerShell and you can cast JSON to them like this.
+You can create Classes in PowerShell and you can cast JSON to them like this.
 
 ```powershell
 class book {
