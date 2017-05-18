@@ -95,6 +95,57 @@ class root {
 ```
 This approach enables you to validate that the incoming data has correct objects and fields associated with it.
 
+### Generate the Classes From the Data
+
+```powershell
+$PSObjs = & .\PSJson.ps1
+New-ClassDefinitionFromObject -InputObject $PSObjs
+```
+
+Do this on a dataset beforehand to pre-generate the classes so you don't have to create them all by hand.
+Tweak as needed if the sample dataset you fed it didn't cover all possibilities.
+
+`New-ClassDefinitionFromObject` can also be told to convert some properties into an `enum` instead with the `-EnumType` parameter (wildcards supported):
+
+```powershell
+New-ClassDefinitionFromObject -InputObject $PSObjs -EnumType categ*
+```
+
+And the actual generated code from the above command:
+
+```powershell
+enum category
+{
+	reference;fiction
+}
+
+class book
+{
+	[category]$category
+	[System.String]$author
+	[System.String]$title
+	[System.Decimal]$price
+	[System.String]$isbn
+}
+
+class bicycle
+{
+	[System.String]$color
+	[System.Decimal]$price
+}
+
+class store
+{
+	[book[]]$book
+	[bicycle]$bicycle
+}
+
+class root
+{
+	[store]$store
+}
+```
+
 ### Queries
 
 | PowerShell | Description |
