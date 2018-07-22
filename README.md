@@ -5,10 +5,10 @@ Comes with:
 * [Pester](https://github.com/pester/Pester) tests
 * PowerShell classes for casting the JSON
 
-
+<!-- CHAPTER START -->
 # Query Example
 
-```powershell
+```ps
 $cities=@"
 [
   { name: "London", "population": 8615246 },
@@ -20,11 +20,14 @@ $cities=@"
 
 $cities.name | ConvertTo-Json -Compress
 ```
+<!-- CHAPTER END -->
+
 
 ```json
 ["London","Berlin","Madrid","Rome"]
 ```
 
+<!-- CHAPTER START -->
 # Example Expressions
 Query JSON with PowerShell
 
@@ -33,7 +36,7 @@ Query JSON with PowerShell
 ```json
 {
   "store": {
-    "book": [ 
+    "book": [
       {
         "category": "reference",
         "author": "Nigel Rees",
@@ -65,10 +68,15 @@ Query JSON with PowerShell
   }
 }
 ```
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 ### Cast to a Class in PowerShell
+
 You can create Classes in PowerShell and you can cast JSON to them like this.
 
-```powershell
+<!-- EXCLUDE CODE START -->
+```ps
 class book {
     $category
     $author
@@ -93,11 +101,18 @@ class root {
 
 [root](.\PSJson.ps1)
 ```
+<!-- EXCLUDE CODE END -->
+
+
 This approach enables you to validate that the incoming data has correct objects and fields associated with it.
+
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 
 ### Generate the Classes From the Data
 
-```powershell
+```ps
 $PSObjs = & .\PSJson.ps1
 New-ClassDefinitionFromObject -InputObject $PSObjs
 ```
@@ -107,13 +122,13 @@ Tweak as needed if the sample dataset you fed it didn't cover all possibilities.
 
 `New-ClassDefinitionFromObject` can also be told to convert some properties into an `enum` instead with the `-EnumType` parameter (wildcards supported):
 
-```powershell
+```ps
 New-ClassDefinitionFromObject -InputObject $PSObjs -EnumType categ*
 ```
 
 And the actual generated code from the above command:
 
-```powershell
+```ps
 enum category
 {
 	reference;fiction
@@ -145,6 +160,9 @@ class root
 	[store]$store
 }
 ```
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
 
 ### Queries
 
@@ -164,8 +182,8 @@ J. R. R. Tolkien
 | `$data.store \| Format-List` | All the things in the store |
 
 ```
-book    : {@{category=reference; author=Nigel Rees; title=Sayings of the Century; price=8.95}, @{category=fiction; author=Evelyn Waugh; title=Sword of Honour; 
-          price=12.99}, @{category=fiction; author=Herman Melville; title=Moby Dick; isbn=0-553-21311-3; price=8.99}, @{category=fiction; author=J. R. R. Tolkien; 
+book    : {@{category=reference; author=Nigel Rees; title=Sayings of the Century; price=8.95}, @{category=fiction; author=Evelyn Waugh; title=Sword of Honour;
+          price=12.99}, @{category=fiction; author=Herman Melville; title=Moby Dick; isbn=0-553-21311-3; price=8.99}, @{category=fiction; author=J. R. R. Tolkien;
           title=The Lord of the Rings; isbn=0-395-19395-8; price=22.99}}
 bicycle : @{color=red; price=19.95}
 ```
@@ -285,3 +303,4 @@ fiction  Evelyn Waugh     Sword of Honour       12.99
 fiction  Herman Melville  Moby Dick              8.99
 fiction  J. R. R. Tolkien The Lord of the Rings 22.99
 ```
+<!-- CHAPTER END -->
