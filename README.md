@@ -49,9 +49,9 @@ Here is a pruned down output from ~90 lines of JSON information.
 
 Pipe the result from `az cli` to PowerShell's `ConvertFrom-Json`, it gets converted to an array of objects, and then you pipe it to the Select-Object cmdlet to display the name property.
 
-<!-- [![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com) -->
+[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com)
 
-<a style="cursor:pointer" onclick='javascript:window.open("https://shell.azure.com", "_blank", "toolbar=no,scrollbars=yes,resizable=yes,menubar=no,location=no,status=no")'><image src="https://shell.azure.com/images/launchcloudshell.png" /></a>
+<!-- <a style="cursor:pointer" onclick='javascript:window.open("https://shell.azure.com", "_blank", "toolbar=no,scrollbars=yes,resizable=yes,menubar=no,location=no,status=no")'><image src="https://shell.azure.com/images/launchcloudshell.png" /></a> -->
 
 ```ps
 (az vm list | ConvertFrom-Json) | Select-Object name
