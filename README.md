@@ -17,7 +17,7 @@ az vm list
 
 **Example Result:**
 
-The results here a pruned down from ~90 lines of JSON information.
+Here is a pruned down output from ~90 lines of JSON information.
 
 ```
   {
