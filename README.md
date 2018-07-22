@@ -51,7 +51,6 @@ Pipe the result from `az cli` to PowerShell's `ConvertFrom-Json`, it gets conver
 
 [![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/powershell)
 
-<!-- <a style="cursor:pointer" onclick='javascript:window.open("https://shell.azure.com", "_blank", "toolbar=no,scrollbars=yes,resizable=yes,menubar=no,location=no,status=no")'><image src="https://shell.azure.com/images/launchcloudshell.png" /></a> -->
 
 ```ps
 (az vm list | ConvertFrom-Json) | Select-Object name
@@ -78,6 +77,8 @@ TestServer8
 
 Now, grab more than one property.
 
+[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/powershell)
+
 ```ps
 (az vm list | ConvertFrom-Json) | Select-Object resourcegroup, name
 ```
@@ -102,6 +103,9 @@ TESTSERVER8-RG TestServer8
 **Example az cli:**
 
 Or, do custom transformations.
+
+[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/powershell)
+
 
 ```ps
 (az vm list | ConvertFrom-Json) | ForEach-Object {
