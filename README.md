@@ -47,17 +47,19 @@ Here is a pruned down output from ~90 lines of JSON information.
 
 **Example az cli:**
 
-Pipe the result from `az cli` to PowerShell's `ConvertFrom-Json`, it gets converted to an array of objects, and then you can use the ForEach-Object cmdlet to display the name property.
+Pipe the result from `az cli` to PowerShell's `ConvertFrom-Json`, it gets converted to an array of objects, and then you pipe it to the Select-Object cmdlet to display the name property.
 
 ```ps
-(az vm list | ConvertFrom-Json) | ForEach-Object name
+(az vm list | ConvertFrom-Json) | Select-Object name
 ```
 
 **Example Result:**
 
-Grabbing just the names of the VMs
+PowerShell easily iterates over just the names of the VMs.
 
 ```
+name
+----
 TestServer1
 TestServer2
 TestServer3
