@@ -72,7 +72,7 @@ TestServer8
 
 **Example az cli:**
 
-Grab more than one property.
+Now, grab more than one property.
 
 ```ps
 (az vm list | ConvertFrom-Json) | Select-Object resourcegroup, name
@@ -97,7 +97,7 @@ TESTSERVER8-RG TestServer8
 
 **Example az cli:**
 
-Or, do custom transformation.
+Or, do custom transformations.
 
 ```ps
 (az vm list | ConvertFrom-Json) | ForEach-Object {
