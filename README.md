@@ -5,145 +5,6 @@ Comes with:
 * [Pester](https://github.com/pester/Pester) tests
 * PowerShell classes for casting the JSON
 
-
-<!-- CHAPTER START -->
-# PowerShell and the Azure CLI
-
-**Example az cli:**
-
-[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/powershell)
-
-
-```ps
-az vm list
-```
-
-**Example Result:**
-
-Here is a pruned down output from ~90 lines of JSON information.
-
-```
-  {
-    "additionalProperties": {},
-    "availabilitySet": null,
-    "diagnosticsProfile": {
-      "additionalProperties": {},
-      "bootDiagnostics": {
-        "additionalProperties": {}
-      }
-    },
-    "hardwareProfile": {
-    }
-    .
-    .
-    .
-    "identity": null,
-    "licenseType": null,
-    "location": "eastus",
-    "name": "TestServer1",
-    "osProfile": {
-      "additionalProperties": {}
-    }
-
-  }
-```
-
-**Example az cli:**
-
-Pipe the result from `az cli` to PowerShell's `ConvertFrom-Json`, it gets converted to an array of objects, and then you pipe it to the Select-Object cmdlet to display the name property.
-
-[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/powershell)
-
-
-```ps
-(az vm list | ConvertFrom-Json) | Select-Object name
-```
-
-**Example Result:**
-
-PowerShell easily iterates over just the names of the VMs.
-
-```
-name
-----
-TestServer1
-TestServer2
-TestServer3
-TestServer4
-TestServer5
-TestServer6
-TestServer7
-TestServer8
-```
-
-**Example az cli:**
-
-Now, grab more than one property.
-
-[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/powershell)
-
-```ps
-(az vm list | ConvertFrom-Json) | Select-Object resourcegroup, name
-```
-
-**Example Result:**
-
-That lines converts the az cli JSON to an array of PowerShell objects and you pick off the two properties by name.
-
-```
-resourceGroup  name
--------------  ----
-TESTSERVER1-RG TestServer1
-TESTSERVER2-RG TestServer2
-TESTSERVER3-RG TestServer3
-TESTSERVER4-RG TestServer4
-TESTSERVER5-RG TestServer5
-TESTSERVER6-RG TestServer6
-TESTSERVER7-RG TestServer7
-TESTSERVER8-RG TestServer8
-```
-
-**Example az cli:**
-
-Or, do custom transformations.
-
-[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/powershell)
-
-
-```ps
-(az vm list | ConvertFrom-Json) | ForEach-Object {
-
-    $details = $_.storageProfile.imageReference | Select-Object offer, publisher, sku, version
-    [PSCustomObject][Ordered]@{
-        ResourceGroup = $_.ResourceGroup
-        Name          = $_.Name
-        Offer         = $details.Offer
-        Publisher     = $details.Publisher
-        Sku           = $details.Sku
-        Version       = $details.Version
-    }
-}
-```
-
-**Example Result:**
-
-PowerShell makes it easy to traverse nested JSON and flattened the results.
-
-```
-ResourceGroup  Name        Offer        Publisher  Sku       Version
--------------  ----        -----        ---------  ---       -------
-TESTSERVER1-RG TestServer1 UbuntuServer Canonical  16.04-LTS latest
-TESTSERVER2-RG TestServer2 RHEL         RedHat     7.2       latest
-TESTSERVER3-RG TestServer3 kali-linux   kali-linux kali      latest
-TESTSERVER4-RG TestServer4 UbuntuServer Canonical  16.04-LTS latest
-TESTSERVER5-RG TestServer5 UbuntuServer Canonical  16.04-LTS latest
-TESTSERVER6-RG TestServer6 UbuntuServer Canonical  16.04-LTS latest
-TESTSERVER7-RG TestServer7 UbuntuServer Canonical  16.04-LTS latest
-TESTSERVER8-RG TestServer8 UbuntuServer Canonical  16.04-LTS latest
-```
-
-<!-- CHAPTER END -->
-
 <!-- CHAPTER START -->
 # Query Example
 
@@ -442,4 +303,142 @@ fiction  Evelyn Waugh     Sword of Honour       12.99
 fiction  Herman Melville  Moby Dick              8.99
 fiction  J. R. R. Tolkien The Lord of the Rings 22.99
 ```
+<!-- CHAPTER END -->
+
+<!-- CHAPTER START -->
+# PowerShell and the Azure CLI
+
+**Example az cli:**
+
+[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/powershell)
+
+
+```ps
+az vm list
+```
+
+**Example Result:**
+
+Here is a pruned down output from ~90 lines of JSON information.
+
+```
+  {
+    "additionalProperties": {},
+    "availabilitySet": null,
+    "diagnosticsProfile": {
+      "additionalProperties": {},
+      "bootDiagnostics": {
+        "additionalProperties": {}
+      }
+    },
+    "hardwareProfile": {
+    }
+    .
+    .
+    .
+    "identity": null,
+    "licenseType": null,
+    "location": "eastus",
+    "name": "TestServer1",
+    "osProfile": {
+      "additionalProperties": {}
+    }
+
+  }
+```
+
+**Example az cli:**
+
+Pipe the result from `az cli` to PowerShell's `ConvertFrom-Json`, it gets converted to an array of objects, and then you pipe it to the Select-Object cmdlet to display the name property.
+
+[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/powershell)
+
+
+```ps
+(az vm list | ConvertFrom-Json) | Select-Object name
+```
+
+**Example Result:**
+
+PowerShell easily iterates over just the names of the VMs.
+
+```
+name
+----
+TestServer1
+TestServer2
+TestServer3
+TestServer4
+TestServer5
+TestServer6
+TestServer7
+TestServer8
+```
+
+**Example az cli:**
+
+Now, grab more than one property.
+
+[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/powershell)
+
+```ps
+(az vm list | ConvertFrom-Json) | Select-Object resourcegroup, name
+```
+
+**Example Result:**
+
+That lines converts the az cli JSON to an array of PowerShell objects and you pick off the two properties by name.
+
+```
+resourceGroup  name
+-------------  ----
+TESTSERVER1-RG TestServer1
+TESTSERVER2-RG TestServer2
+TESTSERVER3-RG TestServer3
+TESTSERVER4-RG TestServer4
+TESTSERVER5-RG TestServer5
+TESTSERVER6-RG TestServer6
+TESTSERVER7-RG TestServer7
+TESTSERVER8-RG TestServer8
+```
+
+**Example az cli:**
+
+Or, do custom transformations.
+
+[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/powershell)
+
+
+```ps
+(az vm list | ConvertFrom-Json) | ForEach-Object {
+
+    $details = $_.storageProfile.imageReference | Select-Object offer, publisher, sku, version
+    [PSCustomObject][Ordered]@{
+        ResourceGroup = $_.ResourceGroup
+        Name          = $_.Name
+        Offer         = $details.Offer
+        Publisher     = $details.Publisher
+        Sku           = $details.Sku
+        Version       = $details.Version
+    }
+}
+```
+
+**Example Result:**
+
+PowerShell makes it easy to traverse nested JSON and flattened the results.
+
+```
+ResourceGroup  Name        Offer        Publisher  Sku       Version
+-------------  ----        -----        ---------  ---       -------
+TESTSERVER1-RG TestServer1 UbuntuServer Canonical  16.04-LTS latest
+TESTSERVER2-RG TestServer2 RHEL         RedHat     7.2       latest
+TESTSERVER3-RG TestServer3 kali-linux   kali-linux kali      latest
+TESTSERVER4-RG TestServer4 UbuntuServer Canonical  16.04-LTS latest
+TESTSERVER5-RG TestServer5 UbuntuServer Canonical  16.04-LTS latest
+TESTSERVER6-RG TestServer6 UbuntuServer Canonical  16.04-LTS latest
+TESTSERVER7-RG TestServer7 UbuntuServer Canonical  16.04-LTS latest
+TESTSERVER8-RG TestServer8 UbuntuServer Canonical  16.04-LTS latest
+```
+
 <!-- CHAPTER END -->
